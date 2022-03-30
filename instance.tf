@@ -15,7 +15,7 @@ resource "aws_instance" "my_public_server" {
 
 
 resource "aws_instance" "my_private_server" {
-  count = var.number_of_instances
+  count = 3
   ami                    = data.aws_ami.aws_basic_linux.id
   instance_type          = var.ec2_type
   subnet_id              = data.aws_subnet.private_app.id
@@ -23,6 +23,6 @@ resource "aws_instance" "my_private_server" {
   key_name               = var.my_keypair
 
   tags = {
-      Name = "public_server_${count.index + 1}"
+      Name = "private_server_${count.index + 1}"
   }
 }
