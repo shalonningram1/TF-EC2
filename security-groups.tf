@@ -29,3 +29,19 @@ resource "aws_security_group" "my_public_app_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
+
+resource "aws_security_group" "my_private_app_sq" {
+  name        = "my_private_app_sg"
+  description = "Allow private access"
+  vpc_id      = data.aws_vpc.main_vpc.id
+
+  # INBOUND CONNECTIONS
+  ingress {
+    description = "Allow private SSH into the EC2"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]     # FIND THE IP ADDRESS OF THE PUBLIC SUBNET
+  }
+}
