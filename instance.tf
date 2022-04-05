@@ -15,7 +15,7 @@ resource "aws_instance" "my_public_server" {
 
 
 resource "aws_instance" "my_private_server" {
-  count = 3
+  count = 1
   ami                    = data.aws_ami.aws_basic_linux.id
   instance_type          = var.ec2_type
   subnet_id              = data.aws_subnet.private_app.id
