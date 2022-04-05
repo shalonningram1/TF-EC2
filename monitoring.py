@@ -1,4 +1,9 @@
+from cgitb import html
 import boto3
+
+
+html_page = "<html><body><h1>List of instances from the private subnets</h1>"
+
 
 # Get Subnet information
 def getPrivateSubnetId():
@@ -17,11 +22,15 @@ ec2 = boto3.resource('ec2')
 for instance in ec2.instances.all():
 
     if instance.subnet_id == private_subnet:  
-        print("Id: {0}\nType: {1}\nAMI: {2}\nState: {3}\nSubnet: {4}\n".format(
+        html_page += "<p>Id: {0}<br>Type: {1}<br>AMI: {2}<br>State: {3}<br>Subnet: {4}<br><br></p>".format(
             instance.id, 
             instance.instance_type, 
             instance.image.id, 
             instance.state,
             instance.subnet_id
             )
-        )
+
+html_page += "</body></html>"
+html_file = open("index.html", "w")
+html_file.write(html_page)
+html_file.close()
