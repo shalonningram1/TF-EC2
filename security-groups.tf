@@ -42,6 +42,6 @@ resource "aws_security_group" "my_private_app_sq" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["192.168.1.136/32"]     # FIND THE IP ADDRESS OF THE PUBLIC SUBNET
+    cidr_blocks = ["192.168.1.136/32"] # FIND THE IP ADDRESS OF THE PUBLIC SUBNET
   }
 }
